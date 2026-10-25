@@ -1,0 +1,7 @@
+{
+    "OMR-ED": "0",
+    "numSymbolsInPredicted": "47",
+    "numSymbolsInGroundTruth": "47",
+    "numSymbolsInBoth": "94",
+    "OMR-NED": "0.0"
+}

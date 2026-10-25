@@ -1,0 +1,174 @@
+# Organ Score
+ThreePartsOrgan.musicxml vs TwoPartsOrgan.musicxml
+numDiffs = 16
+{"OMR-ED": "72", "numSymbolsInPredicted": "206", "numSymbolsInGroundTruth": "201", "numSymbolsInBoth": "407", "OMR-NED": "0.1769041769041769"}
+--- score1
++++ score2
+@@ measure 0, staff 0, beat 0.0 @@
+-(StaffGroup:name) StaffGroup[0, 1, 2] name=Pipe Organ
++(StaffGroup:name) StaffGroup[0, 1] name=Piano
+@@ measure 0, staff 0, beat 0.0 @@
+-(StaffGroup:parts) StaffGroup[0, 1, 2]
++(StaffGroup:parts) StaffGroup[0, 1]
+@@ measure 0, staff 0, beat 0.0 @@
+-(metadata:value) movementName:ThreePartsOrgan.musicxml
++(metadata:value) movementName:TwoPartsOrgan.musicxml
+@@ measure 0, staff 3, beat 1.0 @@
+-(part) part 2
+@@ measure 1, staff 1, beat 1.0 @@
+-(KeySignature:flats/sharps,sharp0) changedInfo={flats/sharps:none}
++(KeySignature:flats/sharps,sharp0) changedInfo={sharp0:F}
+@@ measure 1, staff 1, beat 1.0 @@
+-(TimeSignature:numerator,denominator,symbol) changedInfo={numerator:4, denominator:4}
++(TimeSignature:numerator,denominator,symbol) changedInfo={symbol:common}
+@@ measure 1, staff 2, beat 1.0 @@
+-(KeySignature:flats/sharps,sharp0) changedInfo={flats/sharps:none}
++(KeySignature:flats/sharps,sharp0) changedInfo={sharp0:F}
+@@ measure 1, staff 2, beat 1.0 @@
+-(TimeSignature:numerator,denominator,symbol) changedInfo={numerator:4, denominator:4}
++(TimeSignature:numerator,denominator,symbol) changedInfo={symbol:common}
+@@ measure 8, staff 1, beat 1.0 @@
++(RepeatBracket) 1. measurecount:1 dur=4.0
+@@ measure 8, staff 1, beat 5.0 @@
+-(Barline) final
+@@ measure 8, staff 1, beat 5.0 @@
++(Repeat) final repeatdirection:end
+@@ measure 8, staff 2, beat 1.0 @@
++(RepeatBracket) 1. measurecount:1 dur=4.0
+@@ measure 8, staff 2, beat 5.0 @@
+-(Barline) final
+@@ measure 8, staff 2, beat 5.0 @@
++(Repeat) final repeatdirection:end
+@@ measure 9, staff 1, beat 1.0 @@
++(measure) measure 9
+@@ measure 9, staff 2, beat 1.0 @@
++(measure) measure 9
+
+# Organ Score
+TwoPartsOrgan.musicxml vs ThreePartsOrgan.musicxml
+numDiffs = 16
+{"OMR-ED": "72", "numSymbolsInPredicted": "201", "numSymbolsInGroundTruth": "206", "numSymbolsInBoth": "407", "OMR-NED": "0.1769041769041769"}
+--- score1
++++ score2
+@@ measure 0, staff 0, beat 0.0 @@
+-(StaffGroup:name) StaffGroup[0, 1] name=Piano
++(StaffGroup:name) StaffGroup[0, 1, 2] name=Pipe Organ
+@@ measure 0, staff 0, beat 0.0 @@
+-(StaffGroup:parts) StaffGroup[0, 1]
++(StaffGroup:parts) StaffGroup[0, 1, 2]
+@@ measure 0, staff 0, beat 0.0 @@
+-(metadata:value) movementName:TwoPartsOrgan.musicxml
++(metadata:value) movementName:ThreePartsOrgan.musicxml
+@@ measure 0, staff 3, beat 1.0 @@
++(part) part 2
+@@ measure 1, staff 1, beat 1.0 @@
+-(KeySignature:sharp0,flats/sharps) changedInfo={sharp0:F}
++(KeySignature:sharp0,flats/sharps) changedInfo={flats/sharps:none}
+@@ measure 1, staff 1, beat 1.0 @@
+-(TimeSignature:symbol,numerator,denominator) changedInfo={symbol:common}
++(TimeSignature:symbol,numerator,denominator) changedInfo={numerator:4, denominator:4}
+@@ measure 1, staff 2, beat 1.0 @@
+-(KeySignature:sharp0,flats/sharps) changedInfo={sharp0:F}
++(KeySignature:sharp0,flats/sharps) changedInfo={flats/sharps:none}
+@@ measure 1, staff 2, beat 1.0 @@
+-(TimeSignature:symbol,numerator,denominator) changedInfo={symbol:common}
++(TimeSignature:symbol,numerator,denominator) changedInfo={numerator:4, denominator:4}
+@@ measure 8, staff 1, beat 1.0 @@
+-(RepeatBracket) 1. measurecount:1 dur=4.0
+@@ measure 8, staff 1, beat 5.0 @@
+-(Repeat) final repeatdirection:end
+@@ measure 8, staff 1, beat 5.0 @@
++(Barline) final
+@@ measure 8, staff 2, beat 1.0 @@
+-(RepeatBracket) 1. measurecount:1 dur=4.0
+@@ measure 8, staff 2, beat 5.0 @@
+-(Repeat) final repeatdirection:end
+@@ measure 8, staff 2, beat 5.0 @@
++(Barline) final
+@@ measure 9, staff 1, beat 1.0 @@
+-(measure) measure 9
+@@ measure 9, staff 2, beat 1.0 @@
+-(measure) measure 9
+
+# Beethoven piano sonata #1 movement 1 (b has been edited)
+beethoven-sonata01-1a.musicxml vs beethoven-sonata01-1b.musicxml
+numDiffs = 13
+{"OMR-ED": "25", "numSymbolsInPredicted": "6363", "numSymbolsInGroundTruth": "6355", "numSymbolsInBoth": "12718", "OMR-NED": "0.001965717880169838"}
+--- score1
++++ score2
+@@ measure 1, staff 1, beat 3.0 @@
+-(Barline:symbolic) double
++(Barline:symbolic) dashed
+@@ measure 1, staff 2, beat 3.0 @@
+-(Barline:symbolic) double
++(Barline:symbolic) dashed
+@@ measure 4, staff 1, beat 1.0 @@
+-(Slur:dur) dur=3.0
++(Slur:dur) dur=2.0
+@@ measure 5, staff 1, beat 1.0 @@
+-(Note:grace) C5 (eighth note), grace=slash
++(Note:grace) C5 (eighth note), grace=noslash
+@@ measure 41, staff 1, beat 2.0 @@
+-(TextExpression:content) con espressione
++(TextExpression:content) con espress.
+@@ measure 41, staff 1, beat 2.0 @@
+-(TextExpression:fontStyle) con espressione changedStyle={fontStyle:italic}
++(TextExpression:fontStyle) con espress. changedStyle={}
+@@ measure 45, staff 1, beat 1.0 @@
+-(Note) E5 (quarter note)
+@@ measure 45, staff 1, beat 1.0 @@
++(Note) B5 (quarter note)
+@@ measure 49, staff 1, beat 1.0 @@
+-(Note:head) A4 (quarter note), head=normal
++(Note:head) A4 (half note), head=half
+@@ measure 49, staff 1, beat 1.0 @@
+-(Note:artic) A4 (quarter note), articulations=[staccato]
++(Note:artic) A4 (half note), articulations=[]
+@@ measure 49, staff 1, beat 1.5 @@
+-(Note) C5 (quarter note), articulations=[staccato]
+@@ measure 50, staff 2, beat 1.5 @@
+-(Note) C4 (quarter note)
+@@ measure 50, staff 2, beat 1.5 @@
++(Note) F4 (quarter note)
+
+# Beethoven piano sonata #1 movement 1 (b has been edited)
+beethoven-sonata01-1b.musicxml vs beethoven-sonata01-1a.musicxml
+numDiffs = 13
+{"OMR-ED": "25", "numSymbolsInPredicted": "6355", "numSymbolsInGroundTruth": "6363", "numSymbolsInBoth": "12718", "OMR-NED": "0.001965717880169838"}
+--- score1
++++ score2
+@@ measure 1, staff 1, beat 3.0 @@
+-(Barline:symbolic) dashed
++(Barline:symbolic) double
+@@ measure 1, staff 2, beat 3.0 @@
+-(Barline:symbolic) dashed
++(Barline:symbolic) double
+@@ measure 4, staff 1, beat 1.0 @@
+-(Slur:dur) dur=2.0
++(Slur:dur) dur=3.0
+@@ measure 5, staff 1, beat 1.0 @@
+-(Note:grace) C5 (eighth note), grace=noslash
++(Note:grace) C5 (eighth note), grace=slash
+@@ measure 41, staff 1, beat 2.0 @@
+-(TextExpression:content) con espress.
++(TextExpression:content) con espressione
+@@ measure 41, staff 1, beat 2.0 @@
+-(TextExpression:fontStyle) con espress. changedStyle={}
++(TextExpression:fontStyle) con espressione changedStyle={fontStyle:italic}
+@@ measure 45, staff 1, beat 1.0 @@
+-(Note) B5 (quarter note)
+@@ measure 45, staff 1, beat 1.0 @@
++(Note) E5 (quarter note)
+@@ measure 49, staff 1, beat 1.0 @@
+-(Note:head) A4 (half note), head=half
++(Note:head) A4 (quarter note), head=normal
+@@ measure 49, staff 1, beat 1.0 @@
+-(Note:artic) A4 (half note), articulations=[]
++(Note:artic) A4 (quarter note), articulations=[staccato]
+@@ measure 49, staff 1, beat 1.5 @@
++(Note) C5 (quarter note), articulations=[staccato]
+@@ measure 50, staff 2, beat 1.5 @@
+-(Note) F4 (quarter note)
+@@ measure 50, staff 2, beat 1.5 @@
++(Note) C4 (quarter note)
+
