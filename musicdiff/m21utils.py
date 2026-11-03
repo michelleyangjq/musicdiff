@@ -933,6 +933,8 @@ class M21Utils:
             spanner_types.append(m21.spanner.Ottava)
         if DetailLevel.includesTremolos(detail):
             spanner_types.append(m21.expressions.TremoloSpanner)
+        if DetailLevel.includesGlissandos(detail):
+            spanner_types.append(m21.spanner.Glissando)
 
         spannerElementClasses: tuple[type, ...] = (
             m21.note.GeneralNote,
@@ -1079,6 +1081,8 @@ class M21Utils:
             return 'diminuendo'
         if isinstance(extra, m21.spanner.Slur):
             return 'slur'
+        if isinstance(extra, m21.spanner.Glissando):
+            return 'glissando'
         if isinstance(extra, (m21.expressions.ArpeggioMark, m21.expressions.ArpeggioMarkSpanner)):
             return 'arpeggio'
         if isinstance(extra, m21.harmony.ChordSymbol):
@@ -1176,6 +1180,10 @@ class M21Utils:
             if t.TYPE_CHECKING:
                 assert isinstance(extra, m21.spanner.Slur)
             return M21Utils.slur_to_symbolic(extra, kind, detail)
+        if kind == 'glissando':
+            if t.TYPE_CHECKING:
+                assert isinstance(extra, m21.spanner.Glissando)
+            return M21Utils.glissando_to_symbolic(extra, kind, detail)
         if kind == 'arpeggio':
             if t.TYPE_CHECKING:
                 assert isinstance(
@@ -1272,6 +1280,10 @@ class M21Utils:
             if t.TYPE_CHECKING:
                 assert isinstance(extra, m21.spanner.Slur)
             return M21Utils.slur_to_infodict(extra, kind, detail)
+        if kind == 'glissando':
+            if t.TYPE_CHECKING:
+                assert isinstance(extra, m21.spanner.Glissando)
+            return M21Utils.glissando_to_infodict(extra, kind, detail)
         if kind == 'arpeggio':
             if t.TYPE_CHECKING:
                 assert isinstance(
@@ -2183,6 +2195,52 @@ class M21Utils:
         return {}
 
     @staticmethod
+    def glissando_to_string(
+        glissando: m21.spanner.Glissando,
+        kind: str,
+        detail: DetailLevel | int
+    ) -> str | None:
+        if len(glissando) < 2:
+            return None
+
+        start = glissando[0]
+        end = glissando[-1]
+
+        return f'{start} -> {end}'
+
+    @staticmethod
+    def glissando_to_symbolic(
+        glissando: m21.spanner.Glissando,
+        kind: str,
+        detail: DetailLevel | int
+    ) -> str | None:
+        if len(glissando) < 2:
+            return None
+
+        start = glissando[0]
+        end = glissando[-1]
+
+        return f'{start} -> {end}'
+    
+    @staticmethod
+    def glissando_to_infodict(
+        glissando: m21.spanner.Glissando,
+        kind: str,
+        detail: DetailLevel | int
+    ) -> str | None:
+        if len(glissando) < 2:
+            return None
+
+        start = glissando[0]
+        end = glissando[-1]
+
+        return {
+            'startpitch': str(start.pitch) if hasattr(start, 'pitch') else str(start),
+            'endpitch': str(end.pitch) if hasattr(end, 'pitch') else str(end),
+            'linetype': str(glissando.lineType),
+        }
+
+    @staticmethod
     def arpeggio_to_string(
         arp: m21.expressions.ArpeggioMark | m21.expressions.ArpeggioMarkSpanner,
         kind: str,
@@ -2394,6 +2452,8 @@ class M21Utils:
     ) -> str | None:
         if isinstance(extra, m21.spanner.Slur):
             return M21Utils.slur_to_string(extra, kind, detail)
+        if isinstance(extra, m21.spanner.Glissando):
+            return M21Utils.glissando_to_string(extra, kind, detail)
         if isinstance(extra, (m21.key.Key, m21.key.KeySignature)):
             return M21Utils.keysig_to_string(extra, kind, detail)
         if isinstance(extra, m21.expressions.TextExpression):
