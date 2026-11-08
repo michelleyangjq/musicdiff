@@ -797,7 +797,7 @@ class M21Utils:
             # we ignore all invisible objects
             return True
 
-        if kind in ('direction', 'tempo', 'staffinfo'):
+        if kind in ('direction', 'tempo', 'staffinfo', 'instrument'):
             # we ignore empty TextExpressions/MetronomeMarks/StaffLayouts
             if M21Utils.extra_to_string(el, kind, detail):
                 # not empty, don't ignore
