@@ -1062,6 +1062,8 @@ class M21Utils:
     def extra_to_kind(extra: m21.base.Music21Object) -> str:
         if isinstance(extra, m21.clef.Clef):
             return 'clef'
+        if isinstance(extra, m21.instrument.Instrument):
+            return 'instrument'
         if isinstance(extra, m21.meter.TimeSignature):
             return 'timesig'
         if isinstance(extra, m21.tempo.TempoIndication):
