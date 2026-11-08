@@ -894,9 +894,12 @@ class M21Utils:
             if isinstance(el, m21.instrument.Instrument):
                 if not DetailLevel.includesDirections(detail):
                     continue
+            elif isinstance(el, m21.instrument.Instrument):
+                if not DetailLevel.includesDirections(detail):
+                    continue
             elif not DetailLevel.objIsIncluded(el, detail):
-                # ignore objects that were not requested
-                continue
+                 # ignore objects that were not requested
+                 continue
 
             kind: str = M21Utils.extra_to_kind(el)
             if kind == '':
@@ -1153,6 +1156,10 @@ class M21Utils:
             if t.TYPE_CHECKING:
                 assert isinstance(extra, m21.clef.Clef)
             return M21Utils.clef_to_symbolic(extra, kind, detail)
+        if kind == 'instrument':
+            if t.TYPE_CHECKING:
+                assert isinstance(extra, m21.instrument.Instrument)
+            return M21Utils.instrument_to_symbolic(extra, kind, detail)
         if kind == 'timesig':
             if t.TYPE_CHECKING:
                 assert isinstance(extra, m21.meter.TimeSignature)
@@ -1253,6 +1260,10 @@ class M21Utils:
             if t.TYPE_CHECKING:
                 assert isinstance(extra, m21.clef.Clef)
             return M21Utils.clef_to_infodict(extra, kind, detail)
+
+        if kind == 'instrument':
+            return{}
+        
         if kind == 'timesig':
             if t.TYPE_CHECKING:
                 assert isinstance(extra, m21.meter.TimeSignature)
@@ -1378,7 +1389,7 @@ class M21Utils:
         elif kind in ('chordsym', 'ending', 'direction',
                 'clef', 'keysig', 'timesig', 'tempo', 'dynamic',
                 'staffinfo', 'systembreak', 'pagebreak',
-                'rehearsalmark', 'pedalbounce',
+                'rehearsalmark', 'pedalbounce', 'instrument',
                 'pedalgapstart', 'pedalgapend'):
             # we ignore duration for ChordSymbols, it is often 0.0 or 1.0, and meaningless.
             # we also ignore duration for endings (RepeatBrackets).  We count how many measures
@@ -2450,6 +2461,18 @@ class M21Utils:
         return {}
 
     @staticmethod
+    def instrument_to_symbolic(
+        inst: m21.instrument.Instrument,
+        kind: str,
+        detail: DetailLevel | int
+    ) -> str | None:
+        name: str = (inst.instrumentName or inst.partName or '').strip()
+        if not name and inst.midiProgram is not None:
+            name = f'program {inst.midiProgram}'
+        return name or None
+
+
+    @staticmethod
     def extra_to_string(
         extra: m21.base.Music21Object,
         kind: str,
@@ -2467,6 +2490,10 @@ class M21Utils:
             return M21Utils.dynamic_to_string(extra, kind, detail)
         if isinstance(extra, m21.clef.Clef):
             return M21Utils.clef_to_string(extra, kind, detail)
+        
+        #TODO: Add instrument
+
+
         if isinstance(extra, m21.meter.TimeSignature):
             return M21Utils.timesig_to_string(extra, kind, detail)
         if isinstance(extra, m21.tempo.TempoIndication):
