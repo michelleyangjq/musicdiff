@@ -891,7 +891,10 @@ class M21Utils:
         # since they are non-printed.  We also try to de-duplicate redundant clefs.
         mostRecentClef: m21.clef.Clef | None = None
         for el in initialList:
-            if not DetailLevel.objIsIncluded(el, detail):
+            if isinstance(el, m21.instrument.Instrument):
+                if not DetailLevel.includesDirections(detail):
+                    continue
+            elif not DetailLevel.objIsIncluded(el, detail):
                 # ignore objects that were not requested
                 continue
 
