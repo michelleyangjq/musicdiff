@@ -894,14 +894,12 @@ class M21Utils:
             if isinstance(el, m21.instrument.Instrument):
                 if not DetailLevel.includesDirections(detail):
                     continue
-            elif isinstance(el, m21.instrument.Instrument):
-                if not DetailLevel.includesDirections(detail):
-                    continue
             elif not DetailLevel.objIsIncluded(el, detail):
-                 # ignore objects that were not requested
-                 continue
+                # ignore objects that were not requested
+                continue
 
             kind: str = M21Utils.extra_to_kind(el)
+
             if kind == '':
                 # skip unrecognized extras.
                 continue
